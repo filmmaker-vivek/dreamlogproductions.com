@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sheee (2026) | Vivek Srikumar</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      background-color: #000;
+      color: white;
+    }
+
+    .header-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3em;
+    }
+
+    header a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2em;
+      margin-top: 10px;
+      display: inline-block;
+    }
+
+    .film-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 40px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .film-poster {
+      flex: 1 1 300px;
+      max-width: 400px;
+    }
+
+    .film-poster img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .film-info {
+      flex: 1 1 300px;
+      max-width: 600px;
+    }
+
+    .film-info h2 {
+      font-size: 2.5em;
+      margin: 0;
+    }
+
+    .film-info p {
+      font-size: 1.2em;
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+
+    .video-watch-section {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .video-container, .watch-container {
+      flex: 1;
+      max-width: 48%;
+    }
+
+    iframe {
+      width: 100%;
+      height: 315px;
+      border: none;
+    }
+
+    .small-video {
+      width: 100%;
+      max-width: 560px;
+      height: 315px;
+    }
+
+    .small-image {
+      width: 7%;
+      height: auto;
+      vertical-align: bottom;
+      margin-right: 10px;
+    }
+
+    .watch-full-film-btn {
+      display: inline-block;
+      margin-top: 50px;
+      background: #fff;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .photo-gallery h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .photo-gallery img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 10px;
+      margin: 10px;
+    }
+
+    .social-links img {
+      width: 30px;
+      margin: 0 10px;
+    }
+
+  .awards-recognition {
+  font-size: 0.5em; /* Reduced font size for awards and recognitions */
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+  .film-links {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 50px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(6px);
+}
+
+.social-btn:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255,255,255,0.15);
+}
+
+/* Support & Connect Section */
+.support-card{
+
+margin-top:35px;
+
+padding:28px;
+
+background:rgba(255,255,255,.04);
+
+border:1px solid rgba(255,255,255,.12);
+
+border-radius:18px;
+
+backdrop-filter:blur(10px);
+
+transition:.3s;
+
+}
+
+.support-card:hover{
+
+border-color:#c79a45;
+
+box-shadow:0 0 30px rgba(199,154,69,.15);
+
+}
+
+.support-card h3{
+
+margin-top:0;
+
+font-size:1.5em;
+
+margin-bottom:15px;
+
+}
+
+.support-card p{
+
+font-size:1em;
+
+line-height:1.7;
+
+color:#d8d8d8;
+
+margin-bottom:25px;
+
+}
+
+.support-main-btn,
+
+.support-secondary-btn{
+
+display:block;
+
+text-align:center;
+
+padding:14px;
+
+border-radius:50px;
+
+text-decoration:none;
+
+font-weight:600;
+
+margin-bottom:15px;
+
+transition:.3s;
+
+}
+
+.support-main-btn{
+
+background:#c79a45;
+
+color:#000;
+
+}
+
+.support-main-btn:hover{
+
+background:#fff;
+
+}
+
+.support-secondary-btn{
+
+border:1px solid rgba(255,255,255,.3);
+
+color:#fff;
+
+}
+
+.support-secondary-btn:hover{
+
+background:#fff;
+
+color:#000;
+
+}
+
+  .imdb-link:hover {
+  text-decoration: underline;
+  }
+
+    /* Sheee Trailer Section */
+.trailer-section {
+  width: 90%;
+  max-width: 1000px;
+  margin: 30px auto 70px;
+  text-align: center;
+}
+
+.trailer-section h2 {
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+}
+
+.trailer-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 15px;
+  background: #000;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
+}
+
+.trailer-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+    @media (max-width: 768px) {
+      .film-section {
+        flex-direction: column;
+        text-align: center;
+      }
+      .video-watch-section {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+    
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Sheee (2026)</h1>
+    <a href="../index.html">⬅ Back to Films</a>
+  </header>
+
+  <!-- Film Intro Section -->
+  <section class="film-section">
+    <div class="film-poster">
+      <img src="../assets/images/SHEEE.JPEG" alt="Sheee Poster">
+    </div>
+    <div class="film-info">
+      <h2>Sheee</h2>
+      <p><strong>Year:</strong> 2026</p>
+      <p><strong>Genre:</strong> Genre-Blend</p>
+      <p>Sheee is a haunting Irish folklore drama that blurs the line between myth and reality. When Sean, a man searching for meaning, joins Kumar, a folklore enthusiast obsessed with local legends, their curiosity leads them deep into the woods- in search of Dubheasa, a woman once believed to be cursed and who disappeared centuries ago. What begins as a curious night of exploration turns into a journey across time- where love, guilt, and myth intertwine.</p>
+      <div class="support-card">
+
+    <h3>🤝 Support & Connect!</h3>
+    <p>
+        Help us take <strong>Sheee</strong> to next stage...
+        Support and colloborate with us for media, festivals,
+        collaborations and production opportunities.
+    </p>
+    <a
+      href="https://www.gofundme.com/f/lets-finish-sheee-together-help-us-complete-our-short-film"
+      target="_blank"
+      class="support-main-btn">
+        ❤️ Support SHEEE
+    </a>
+    <a
+      href="mailto:dreamlogproductions@gmail.com?subject=SHEEE%20Enquiry"
+      class="support-secondary-btn">
+        ✉ Contact us.. (dreamlogproductions@gmail.com)
+    </a>
+      <a href="https://www.imdb.com/title/tt37984111/" target="_blank" class="social-btn">
+        🎬 IMDb
+    </a>
+    <a href="https://www.instagram.com/sheee_shortfilm/" target="_blank" class="social-btn">
+        📷 Instagram
+    </a>
+  </section>
+
+  <!-- Trailer and Watch Full Film Section -->
+  <section class="video-watch-section">
+   
+  </section>
+
+  <!-- Trailer Section -->
+<section class="trailer-section">
+  <h2>OFFICIAL TEASER</h2>
+
+  <div class="trailer-container">
+    <iframe
+      src="https://www.youtube.com/embed/3TlPUAwh6X0"
+      title="Sheee Official Teaser"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+  <!-- Photo Gallery Section -->
+  <section class="photo-gallery">
+    <h2>Photos from the Set</h2>
+    <img src="../assets/photos/sheee01.JPG" alt="Behind the scenes 1">
+    <img src="../assets/photos/sheee02.JPG" alt="Behind the scenes 2">
+    <img src="../assets/photos/sheee03.JPEG" alt="Behind the scenes 3">
+    <img src="../assets/photos/sheee04.JPEG" alt="Behind the scenes 4">
+    <img src="../assets/photos/sheee05.jpg" alt="Behind the scenes 5">
+    <img src="../assets/photos/sheee06.jpg" alt="Behind the scenes 6">
+    <!-- Add more if needed -->
+  </section>
+  <!-- Footer -->
+  <footer>
+    <div class="social-links">
+      <a href="https://www.instagram.com/vivek_srikumar/" target="_blank">
+        <img src="../assets/images/instagram-logo.png" alt="Instagram" />
+      </a>
+      <a href="https://www.imdb.com/name/nm15313793/" target="_blank">
+        <img src="../assets/images/imdb-logo.png" alt="IMDb" />
+      </a>
+      <a href="https://www.linkedin.com/in/filmmaker-vivek/" target="_blank">
+        <img src="../assets/images/linkedin-logo.png" alt="LinkedIn" />
+      </a>
+      <a href="mailto:stiurthoirvivek@gmail.com" target="_blank">
+        <img src="../assets/images/email-logo.png" alt="Email" />
+      </a>
+    </div>
+    <p>© 2026 Vivek Srikumar | <a href="contact.html">Contact</a></p>
+  </footer>
+  <div class="scroll-down-indicator">&#8595;</div>
+</body>
+</html>
