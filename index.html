@@ -1,176 +1,548 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Dreamlog Productions</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <style>
-    /* Ensure the body and html cover full height */
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dreamlog Productions</title>
 
-    /* Style the image to cover the entire viewport */
-    .header-image {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: auto;
-      object-fit: cover; /* Ensures the image covers the entire area */
-      z-index: -1; /* Makes sure the image stays in the background */
-    }
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;900&display=swap
 
-    header a {
-      color: white;
-      text-decoration: none;
-      font-size: 1.2em;
-      margin-top: 10px;
-      margin-bottom: 40px; 
-      display: inline-block;
-    }
+<style>
 
-    .film-poster {
-      position: relative;
-      overflow: hidden;
-    }
+:root{
+--gold:#D4AF37;
+--dark:#090909;
+--card:#151515;
+--text:#ffffff;
+--muted:#b8b8b8;
+}
 
-    .film-poster img {
-      display: block;
-      width: 100%;
-      height: auto;
-      transition: transform 0.3s ease;
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-    .hover-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      font-size: 1.5em;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 10px 20px;
-      border-radius: 8px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-    }
+html{
+scroll-behavior:smooth;
+}
 
-    .film:hover .hover-text {
-      opacity: 1;
-    }
+body{
+font-family:'Montserrat',sans-serif;
+background:var(--dark);
+color:var(--text);
+overflow-x:hidden;
+}
 
-    .film:hover img {
-      transform: scale(1.05);
-    }
+/* HERO */
 
-/* Style the description text */
-header p {
-      font-weight: normal;
-      font-size: 1.3em;
-      margin-top: 20px;
-      word-wrap: break-word;
-      color: white;
-      line-height: 1.6;
-    }
+.hero{
+position:relative;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:40px;
+overflow:hidden;
+}
 
-  </style>
+.hero::before{
+content:'';
+position:absolute;
+inset:0;
+background:
+linear-gradient(
+to bottom,
+rgba(0,0,0,.45),
+rgba(0,0,0,.90)
+);
+z-index:1;
+}
+
+.hero-bg{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+top:0;
+left:0;
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+max-width:1000px;
+}
+
+.hero h1{
+font-size:6rem;
+font-weight:900;
+letter-spacing:8px;
+text-transform:uppercase;
+margin-bottom:25px;
+}
+
+.hero p{
+font-size:1.2rem;
+line-height:1.8;
+color:#e6e6e6;
+margin-bottom:20px;
+}
+
+.hero strong{
+color:var(--gold);
+}
+
+.hero-btn{
+display:inline-block;
+margin-top:25px;
+padding:16px 40px;
+background:var(--gold);
+color:#000;
+font-weight:700;
+text-decoration:none;
+border-radius:50px;
+transition:.4s;
+}
+
+.hero-btn:hover{
+transform:translateY(-4px);
+box-shadow:0 15px 40px rgba(212,175,55,.30);
+}
+
+/* STATS */
+
+.stats{
+padding:80px 30px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:25px;
+max-width:1200px;
+margin:auto;
+}
+
+.stat-box{
+background:rgba(255,255,255,.04);
+backdrop-filter:blur(20px);
+padding:40px;
+border-radius:20px;
+text-align:center;
+border:1px solid rgba(255,255,255,.06);
+}
+
+.stat-box h2{
+font-size:3rem;
+color:var(--gold);
+margin-bottom:10px;
+}
+
+/* FEATURED FILM */
+
+.featured{
+max-width:1400px;
+margin:auto;
+padding:100px 40px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:center;
+}
+
+.featured img{
+width:100%;
+border-radius:20px;
+box-shadow:0 20px 50px rgba(0,0,0,.4);
+}
+
+.featured h2{
+font-size:3rem;
+margin-bottom:20px;
+}
+
+.featured p{
+line-height:1.8;
+color:#d4d4d4;
+}
+
+.gold{
+color:var(--gold);
+}
+
+/* FILMS */
+
+.category{
+padding:100px 40px;
+max-width:1500px;
+margin:auto;
+}
+
+.section-title{
+text-align:center;
+font-size:3rem;
+margin-bottom:70px;
+position:relative;
+}
+
+.section-title:after{
+content:'';
+display:block;
+width:90px;
+height:3px;
+background:var(--gold);
+margin:15px auto;
+}
+
+.film-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:35px;
+}
+
+.film{
+text-decoration:none;
+color:white;
+}
+
+.film-poster{
+overflow:hidden;
+border-radius:20px;
+position:relative;
+background:var(--card);
+}
+
+.film-poster:before{
+content:'';
+position:absolute;
+inset:0;
+background:linear-gradient(to top, rgba(0,0,0,.85), transparent);
+z-index:1;
+}
+
+.film img{
+width:100%;
+height:430px;
+object-fit:cover;
+transition:.6s;
+}
+
+.film:hover img{
+transform:scale(1.08);
+}
+
+.hover-text{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:var(--gold);
+padding:14px 28px;
+border-radius:50px;
+font-weight:700;
+color:#000;
+opacity:0;
+transition:.4s;
+z-index:2;
+}
+
+.film:hover .hover-text{
+opacity:1;
+}
+
+.film h3{
+text-align:center;
+margin-top:15px;
+font-size:1.1rem;
+}
+
+.film:hover h3{
+color:var(--gold);
+}
+
+/* ABOUT */
+
+.about{
+max-width:1100px;
+margin:auto;
+padding:120px 40px;
+text-align:center;
+}
+
+.about h2{
+font-size:3rem;
+margin-bottom:20px;
+}
+
+.about p{
+line-height:1.9;
+font-size:1.1rem;
+color:#cfcfcf;
+}
+
+/* FOOTER */
+
+footer{
+margin-top:60px;
+padding:80px 20px;
+background:#050505;
+text-align:center;
+border-top:1px solid rgba(255,255,255,.08);
+}
+
+.social-links{
+margin-bottom:25px;
+}
+
+.social-links a{
+display:inline-flex;
+justify-content:center;
+align-items:center;
+width:60px;
+height:60px;
+border-radius:50%;
+background:rgba(255,255,255,.06);
+margin:0 10px;
+transition:.3s;
+}
+
+.social-links a:hover{
+background:var(--gold);
+transform:translateY(-5px);
+}
+
+.social-links img{
+width:28px;
+height:28px;
+object-fit:contain;
+}
+
+footer p{
+color:#b0b0b0;
+}
+
+footer a{
+color:var(--gold);
+text-decoration:none;
+}
+
+/* SCROLL ICON */
+
+.scroll{
+position:absolute;
+bottom:30px;
+left:50%;
+transform:translateX(-50%);
+font-size:2rem;
+animation:bounce 2s infinite;
+z-index:2;
+}
+
+@keyframes bounce{
+0%,100%{transform:translateX(-50%) translateY(0);}
+50%{transform:translateX(-50%) translateY(-10px);}
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.hero h1{
+font-size:3rem;
+letter-spacing:3px;
+}
+
+.featured{
+grid-template-columns:1fr;
+}
+
+.featured h2{
+font-size:2.2rem;
+}
+
+.section-title{
+font-size:2rem;
+}
+
+.about h2{
+font-size:2rem;
+}
+}
+
+</style>
 </head>
+
 <body>
-  <header>
-    <h1 style="margin-bottom: 20px;">Dreamlog Productions</h1>
-    <p></p>
-    <p><strong>Dreamlog Productions</strong> is a film production house based in Ireland. </p>
-     <p>Dedicated to creating compelling and thought-provoking films, Dreamlog Productions also collaborates with talented filmmakers, providing a platform to bring diverse stories to life.</p>
-     </header>
-     <section class="category">
-    <h3 class="directed-title">Produced by Dreamlog</h3>
-    <div class="film-grid">
-      <a href="films/film_gray.html" class="film">
-        <div class="film-poster">
-          <img src="assets/images/GRAY2.jpeg" alt="GRAY">
-          <div class="hover-text">Watch Now</div>
-        </div>
-        <h3>Gray (2023)</h3>
-      </a>
-    
-      <a href="films/film_lastdrop.html" class="film">
-        <div class="film-poster">
-          <img src="assets/images/LASTDROP.JPEG" alt="The Last Drop">
-          <div class="hover-text">Watch Now</div>
-        </div>
-        <h3>The Last Drop (2024)</h3>
-      </a>
-    
-      <a href="films/film_cinemance.html" class="film">
-        <div class="film-poster">
-          <img src="assets/images/CINEMANCE2.jpg" alt="Cinemance">
-          <div class="hover-text">Watch Now</div>
-        </div>
-        <h3>Cinemance (2024)</h3>
-      </a>
-    
-      <a href="films/film_crossroad.html" class="film">
-        <div class="film-poster">
-          <img src="assets/images/CROSSROAD2.JPEG" alt="Crossroad">
-          <div class="hover-text">Know More</div>
-        </div>
-        <h3>Crossroad (2025)</h3>
-      </a>
-    
-      <a href="films/film_legacy.html" class="film">
-        <div class="film-poster">
-          <img src="assets/images/legacy-thumb.JPEG" alt="The Legacy Of Whispers">
-          <div class="hover-text">Know More</div>
-        </div>
-        <h3>The Legacy Of Whispers (2025)</h3>
-      </a>
-    
-      <a href="films/film_irish.html" class="film">
-        <div class="film-poster">
-          <img src="assets/images/IRISH2.JPEG" alt="Irish">
-          <div class="hover-text">Know More</div>
-        </div>
-        <h3>Irish (2025)</h3>
-      </a>
-    
-      <a href="films/film_irishbaba.html" class="film">
-        <div class="film-poster">
-          <img src="assets/images/IRISHBABA2.JPEG" alt="Irish Baba">
-          <div class="hover-text">Know More</div>
-        </div>
-        <h3>Irish Baba (2025)</h3>
-      </a>
 
-    <a href="films/sheee.html" class="film">
-        <div class="film-poster">
-          <img src="assets/images/Sheee-thumb.JPEG" alt="Sheee">
-          <div class="hover-text">Know More</div>
-        </div>
-        <h3>Sheee (2026)</h3>
-      </a>
-    </div>  
-  </section>
+<section class="hero">
 
-  <footer>
-    <div class="social-links">
-      <a href="https://www.instagram.com/vivek_srikumar/" target="_blank">
-        <img src="assets/images/instagram-logo.png" alt="Instagram" />
-      </a>
-      <a href="https://www.imdb.com/name/nm15313793/" target="_blank">
-        <img src="assets/images/imdb-logo.png" alt="IMDb" />
-      </a>
-      <a href="https://www.linkedin.com/in/filmmaker-vivek/" target="_blank">
-        <img src="assets/images/linkedin-logo.png" alt="LinkedIn" />
-      </a>
-      <a href="mailto:stiurthoirvivek@gmail.com" target="_blank">
-        <img src="assets/images/email-logo.png" alt="Email" />
-      </a>
-    </div>
-    <p>© 2025 Vivek Srikumar | <a href="contact.html">Contact</a></p>
-  </footer>
-  <div class="scroll-down-indicator">&#8595;</div>
+assets/images/GRAY2.jpeg
+
+<div class="hero-content">
+<h1>Dreamlog Productions</h1>
+
+<p>
+<strong>Dreamlog Productions</strong> is an Ireland based independent film production house dedicated to creating meaningful, thought-provoking and visually engaging cinema.
+</p>
+
+<p>
+From award winning short films to festival selections across the world, Dreamlog collaborates with talented artists and filmmakers to bring compelling stories to life.
+</p>
+
+#filmsExplore Films</a>
+
+</div>
+
+<div class="scroll">↓</div>
+
+</section>
+
+<section class="stats">
+
+<div class="stat-box">
+<h2>8</h2>
+<p>Short Films</p>
+</div>
+
+<div class="stat-box">
+<h2>20+</h2>
+<p>Festival Selections</p>
+</div>
+
+<div class="stat-box">
+<h2>5+</h2>
+<p>Awards</p>
+</div>
+
+<div class="stat-box">
+<h2>3</h2>
+<p>Years in Ireland</p>
+</div>
+
+</section>
+
+<section class="featured">
+
+assets/images/IRISHBABA2.JPEG
+
+<div>
+<h2>Featured Film <span class="gold">Irish Baba</span></h2>
+
+<p>
+A heartfelt story celebrating identity, belonging and cultural connection. Irish Baba has received multiple festival selections and continues to resonate with audiences through its unique blend of humour, emotion and authenticity.
+</p>
+
+</div>
+
+</section>
+
+<section id="films" class="category">
+
+<h2 class="section-title">Produced by Dreamlog</h2>
+
+<div class="film-grid">
+
+films/film_gray.html
+<div class="film-poster">
+assets/images/GRAY2.jpeg
+<div class="hover-text">Watch Now</div>
+</div>
+<h3>Gray (2023)</h3>
+</a>
+
+films/film_lastdrop.html
+<div class="film-poster">
+<img src="assets/imagesJPEG
+<div class="hover-text">Watch Now</div>
+</div>
+<h3>The Last Drop (2024)</h3>
+</a>
+
+<ilms/film_cinemance.html
+<div class="film-poster">
+<img src="assets/images/CINEMANCE2.jpg">
+hover-text">Watch Now</div>
+</div>
+<h3>Cinemance (2024)</h3>
+</a>
+
+<a href="films/film_.html
+<div class="film-poster">
+<img srcmages/CROSSROAD2.JPEG
+<div class="hover-text">Know More</div>
+</div>
+<h3>Crossroad (2025)</h3>
+</a>
+
+<a href="films/filmtml
+<div class="film-poster">
+assets/images/legacy-thumb.JPEG
+<div class="hover-text">Know More</div>
+</div>
+<h3>The Legacy Of Whispers (2025)</h3>
+</a>
+
+<a hrefilm_irish.html
+<div class="film-poster">
+<img src="assets/images/G
+<div class="hover-text">Know More</div>
+</div>
+<h3>Irish (2025)</h3>
+</a>
+
+<a hrefilm_irishbaba.html
+<div class="film-poster">
+<img src="assets/SHBABA2.JPEG
+<div class="hover-text">Know More</div>
+</div>
+<h3>Irish Baba (2025)</h3>
+</a>
+
+<a href="films/sheee.html" classm-poster">
+assets/images/Sheee-thumb.JPEG
+<div class="hover-text">Know More</div>
+</div>
+<h3>Sheee (2026)</h3>
+</a>
+
+</div>
+
+</section>
+
+<section class="about">
+
+<h2>About Dreamlog</h2>
+
+<p>
+Dreamlog Productions is committed to telling stories that inspire conversation, provoke thought and celebrate human experiences. Founded by filmmaker Vivek Srikumar, the company focuses on creating impactful cinematic experiences through independent filmmaking and creative collaboration.
+</p>
+
+</section>
+
+<footer>
+
+<div class="social-links">
+
+<a href="https://www.instagram.com/vivek_srikumar/" target="_blank">
+assets/images/instagram-logo.png
+</a>
+
+<a href="https://www.imdb.com/name/nm15313793/" target="_blank">
+assets/images/imdb-logo.png
+</a>
+
+<a href="https://www.linkedin.com/in/filmmaker-vivek/" target="_blank">
+assets/images/linkedin-logo.png
+</a>
+
+<a href="mailto:stiurthoirvivek@gmail.com">
+assets/images/email-logo.png
+</a>
+
+</div>
+
+<p>© 2026 Dreamlog Productions | <a href="contact.html">Contact</a></p>
+
+</footer>
+
 </body>
 </html>
